@@ -13,24 +13,24 @@ namespace Symfony\AI\Platform\Bridge\OpenRouter;
 
 use Symfony\AI\Platform\Exception\RuntimeException;
 use Symfony\AI\Platform\Model;
-use Symfony\AI\Platform\Response\RawResponseInterface;
-use Symfony\AI\Platform\Response\ResponseInterface;
-use Symfony\AI\Platform\Response\TextResponse;
-use Symfony\AI\Platform\ResponseConverterInterface;
+use Symfony\AI\Platform\Result\RawResultInterface;
+use Symfony\AI\Platform\Result\ResultInterface;
+use Symfony\AI\Platform\Result\TextResult;
+use Symfony\AI\Platform\ResultConverterInterface;
 
 /**
  * @author rglozman
  */
-final readonly class ResponseConverter implements ResponseConverterInterface
+final readonly class ResultConverter implements ResultConverterInterface
 {
     public function supports(Model $model): bool
     {
         return true;
     }
 
-    public function convert(RawResponseInterface $response, array $options = []): ResponseInterface
+    public function convert(RawResultInterface $result, array $options = []): ResultInterface
     {
-        $data = $response->getRawData();
+        $data = $result->getData();
 
         if (!isset($data['choices'][0]['message'])) {
             throw new RuntimeException('Response does not contain message');
@@ -40,6 +40,6 @@ final readonly class ResponseConverter implements ResponseConverterInterface
             throw new RuntimeException('Message does not contain content');
         }
 
-        return new TextResponse($data['choices'][0]['message']['content']);
+        return new TextResult($data['choices'][0]['message']['content']);
     }
 }
