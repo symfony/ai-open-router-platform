@@ -11,9 +11,9 @@
 
 namespace Symfony\AI\Platform\Bridge\OpenRouter;
 
-use Symfony\AI\Platform\Bridge\Google\Contract\AssistantMessageNormalizer;
-use Symfony\AI\Platform\Bridge\Google\Contract\MessageBagNormalizer;
-use Symfony\AI\Platform\Bridge\Google\Contract\UserMessageNormalizer;
+use Symfony\AI\Platform\Bridge\Gemini\Contract\AssistantMessageNormalizer;
+use Symfony\AI\Platform\Bridge\Gemini\Contract\MessageBagNormalizer;
+use Symfony\AI\Platform\Bridge\Gemini\Contract\UserMessageNormalizer;
 use Symfony\AI\Platform\Contract;
 use Symfony\AI\Platform\Platform;
 use Symfony\Component\HttpClient\EventSourceHttpClient;
